@@ -27,5 +27,17 @@ router.post('/tweet', (req, res) => {
   })
 })
 
+router.delete('/:tweetDelete', (req, res) => {
+  Tweet.deleteOne({
+    tweetDelete: { $regex: new RegExp(req.params.tweetDelete, "i") },
+  }).then(data => {
+    if (data) {
+      res.json({ result: true, data: data });
+    } else {
+      res.json({ result: false, error: "tweet" });
+    }
+  })
+})
+
 
 module.exports = router;
