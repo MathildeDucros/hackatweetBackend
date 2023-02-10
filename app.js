@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 require("dotenv").config();
-=======
-require('dotenv').config();
-
->>>>>>> cam-backend
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
