@@ -12,17 +12,18 @@ router.get('/gettweet', (req, res) => {
 });
 
 router.post('/tweet', (req, res) => {
-  if(!checkBody(req.body, ['content'])){
+  if(!checkBody(req.body, ["content", "username", "firstname"])){
     res.json({ result: false, error: 'Missing or empty field' });
     return;
   }
-  const tweetInc = req.body.content;
   const newTweet = new Tweet({
-    content: tweetInc,
+    content: req.body.content,
+    username: req.body.username,
+    firstname: req.body.firstname
   })
 
   newTweet.save().then(() => {
-    res.json({ result: true, tweet: newTweet.content})
+    res.json({ result: true, content: newTweet.content, username: newTweet.username, firstname: newTweet.firstname})
   })
 })
 
